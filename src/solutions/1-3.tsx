@@ -1,7 +1,8 @@
 import clsx from 'clsx';
+import { ComponentPropsWithoutRef } from 'react';
 import { calculateNextValue, calculateStatus } from '../lib/tictactoe/helpers';
 
-type SquareProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type SquareProps = ComponentPropsWithoutRef<'button'> & {
   isWinningSquare?: boolean;
 };
 

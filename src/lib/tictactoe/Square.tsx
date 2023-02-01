@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { ComponentPropsWithoutRef } from 'react';
 
-type SquareProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type SquareProps = ComponentPropsWithoutRef<'button'> & {
   isWinningSquare?: boolean;
 };
 
