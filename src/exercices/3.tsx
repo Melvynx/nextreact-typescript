@@ -14,15 +14,11 @@ type UserNameFormProps = {
   onUserNamesSubmitted: (userNames: NonNullableUserNames) => void;
 };
 
-type UseUserNamesFormReturnType = {
-  userXRef: React.RefObject<HTMLInputElement>;
-  userORef: React.RefObject<HTMLInputElement>;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-};
+// 🦁 Créer un hooks `useUserNamesForm` et déplace toute la logique de notre
+// composant `UserNameForm` dans ce hooks.
 
-const useUserNamesForm = (
-  onUserNamesSubmitted: (userNames: NonNullableUserNames) => void
-): UseUserNamesFormReturnType => {
+const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
+  // 🦁 Déplace la logique de ce composant dans le hooks `useUserNamesForm`
   const userXRef = useRef<HTMLInputElement>(null);
   const userORef = useRef<HTMLInputElement>(null);
 
@@ -30,28 +26,12 @@ const useUserNamesForm = (
     event.preventDefault();
     const userX = userXRef.current?.value;
     const userO = userORef.current?.value;
-
     if (!userX || !userO) {
-      return;
-    }
-
-    if (userX === userO) {
-      alert('Usernames must be different');
       return;
     }
 
     onUserNamesSubmitted({ X: userX, O: userO });
   };
-
-  return {
-    userXRef,
-    userORef,
-    onSubmit,
-  };
-};
-
-const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
-  const { userXRef, userORef, onSubmit } = useUserNamesForm(onUserNamesSubmitted);
 
   return (
     <form onClick={onSubmit} className="vertical-stack">
@@ -65,15 +45,8 @@ const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
   );
 };
 
-type UseGameOutput = {
-  squares: SquareValue[];
-  userNames: UserNames;
-  status: string;
-  setUserNames: (userNames: UserNames) => void;
-};
-
-const useGame = (): UseGameOutput => {
-  const [squares] = useState(getDefaultSquares());
+const Game = () => {
+  const [squares] = useState<SquareValue[]>(() => getDefaultSquares());
   const [userNames, setUserNames] = useState<UserNames>({
     X: 'Player X',
     O: 'Player O',
@@ -81,23 +54,10 @@ const useGame = (): UseGameOutput => {
 
   const nextValue = calculateNextValue(squares);
 
-  const status = calculateStatus(
-    squares,
-    `${userNames[nextValue]}'s turn (${nextValue})`
-  );
+  const xUserName = userNames.X;
+  const oUserName = userNames.O;
 
-  return {
-    squares,
-    setUserNames,
-    userNames,
-    status,
-  };
-};
-
-const Game = () => {
-  const { squares, setUserNames, userNames, status } = useGame();
-
-  if (!userNames.X || !userNames.O) {
+  if (!xUserName || !oUserName) {
     return (
       <UserNameForm
         onUserNamesSubmitted={(userNames) => {
@@ -107,13 +67,18 @@ const Game = () => {
     );
   }
 
+  const status = calculateStatus(
+    squares,
+    `${userNames[nextValue]}'s turn (${nextValue})`
+  );
+
   return (
     <div className="game">
       <GameInfo
         status={status}
         userNames={{
-          X: userNames.X,
-          O: userNames.O,
+          X: xUserName,
+          O: oUserName,
         }}
       />
       <Board squares={squares} />
