@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:prod": "tsc && npx prisma generate && vite build",
+    "build:prod": "npx prisma generate && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
