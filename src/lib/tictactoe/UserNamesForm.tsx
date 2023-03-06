@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import { NonNullableUserNames } from './helpers';
 
 type UserNameFormProps = {
@@ -9,7 +9,7 @@ export const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
   const userXRef = useRef<HTMLInputElement>(null);
   const userORef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const userX = userXRef.current?.value;
     const userO = userORef.current?.value;

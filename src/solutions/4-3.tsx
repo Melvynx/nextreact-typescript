@@ -1,6 +1,8 @@
 import {
   createContext,
+  FormEvent,
   PropsWithChildren,
+  RefObject,
   useContext,
   useRef,
   useState,
@@ -17,9 +19,9 @@ import {
 } from '../lib/tictactoe/helpers';
 
 type UseUserNamesFormReturnType = {
-  userXRef: React.RefObject<HTMLInputElement>;
-  userORef: React.RefObject<HTMLInputElement>;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  userXRef: RefObject<HTMLInputElement>;
+  userORef: RefObject<HTMLInputElement>;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 
 const useUserNamesForm = (): UseUserNamesFormReturnType => {
@@ -28,7 +30,7 @@ const useUserNamesForm = (): UseUserNamesFormReturnType => {
   const userXRef = useRef<HTMLInputElement>(null);
   const userORef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const userX = userXRef.current?.value;
     const userO = userORef.current?.value;

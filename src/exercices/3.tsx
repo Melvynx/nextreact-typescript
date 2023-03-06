@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { Board } from '../lib/tictactoe/Board';
 import { GameInfo } from '../lib/tictactoe/GameInfo';
 import {
@@ -22,7 +22,7 @@ const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
   const userXRef = useRef<HTMLInputElement>(null);
   const userORef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const userX = userXRef.current?.value;
     const userO = userORef.current?.value;
