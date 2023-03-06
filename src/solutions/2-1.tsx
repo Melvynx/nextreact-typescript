@@ -35,7 +35,7 @@ const Game = () => {
 export default function App() {
   return (
     <div>
-      <h2>TikTacToe</h2>
+      <h2>TicTacToe</h2>
       <Game />
     </div>
   );
