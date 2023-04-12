@@ -1,6 +1,6 @@
-import { FormEvent, useRef, useState } from 'react';
-import { Board } from '../lib/tictactoe/Board';
-import { GameInfo } from '../lib/tictactoe/GameInfo';
+import { FormEvent, useRef, useState } from "react";
+import { Board } from "../lib/tictactoe/Board";
+import { GameInfo } from "../lib/tictactoe/GameInfo";
 import {
   calculateNextValue,
   calculateStatus,
@@ -8,13 +8,13 @@ import {
   NonNullableUserNames,
   SquareValue,
   UserNames,
-} from '../lib/tictactoe/helpers';
+} from "../lib/tictactoe/helpers";
 
 type UserNameFormProps = {
   onUserNamesSubmitted: (userNames: NonNullableUserNames) => void;
 };
 
-// 🦁 Créer un hooks `useUserNamesForm` et déplace toute la logique de notre
+// 🦁 Créer un hooks `useUserNamesForm` et déplacer toute la logique de notre
 // composant `UserNameForm` dans ce hooks.
 
 const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
@@ -48,8 +48,8 @@ const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
 const Game = () => {
   const [squares] = useState<SquareValue[]>(() => getDefaultSquares());
   const [userNames, setUserNames] = useState<UserNames>({
-    X: 'Player X',
-    O: 'Player O',
+    X: "Player X",
+    O: "Player O",
   });
 
   const nextValue = calculateNextValue(squares);
