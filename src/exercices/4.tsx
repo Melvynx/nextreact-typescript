@@ -49,7 +49,7 @@ const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
   const { userXRef, userORef, onSubmit } = useUserNamesForm(onUserNamesSubmitted);
 
   return (
-    <form onClick={onSubmit} className="vertical-stack">
+    <form onSubmit={onSubmit} className="vertical-stack">
       <h3>Put players usernames</h3>
       <label htmlFor="user1">User X</label>
       <input id="user1" ref={userXRef} required minLength={2} />
