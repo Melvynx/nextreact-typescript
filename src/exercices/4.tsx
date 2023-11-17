@@ -1,6 +1,6 @@
-import { FormEvent, RefObject, useRef, useState } from 'react';
-import { Board } from '../lib/tictactoe/Board';
-import { GameInfo } from '../lib/tictactoe/GameInfo';
+import { FormEvent, RefObject, useRef, useState } from "react";
+import { Board } from "../lib/tictactoe/Board";
+import { GameInfo } from "../lib/tictactoe/GameInfo";
 import {
   calculateNextValue,
   calculateStatus,
@@ -8,7 +8,7 @@ import {
   NonNullableUserNames,
   SquareValue,
   UserNames,
-} from '../lib/tictactoe/helpers';
+} from "../lib/tictactoe/helpers";
 
 type UserNameFormProps = {
   onUserNamesSubmitted: (userNames: NonNullableUserNames) => void;
@@ -46,7 +46,8 @@ const useUserNamesForm = (
 };
 
 const UserNameForm = ({ onUserNamesSubmitted }: UserNameFormProps) => {
-  const { userXRef, userORef, onSubmit } = useUserNamesForm(onUserNamesSubmitted);
+  const { userXRef, userORef, onSubmit } =
+    useUserNamesForm(onUserNamesSubmitted);
 
   return (
     <form onClick={onSubmit} className="vertical-stack">
@@ -70,14 +71,14 @@ type UseGameReturnType = {
 
 // 🦁 Utilise le type ci-dessus pour créer un context qui est par défaut à `null`
 
-// 🦁 Refactor useGame pour qu'il deviennent `GameProvider`
+// 🦁 Refactor useGame pour qu'il devienne `GameProvider`
 // Il doit prendre en paramètre un children
 // Il doit retourner le contexte créé plus haut avec le children
 const useGame = (): UseGameReturnType => {
   const [squares] = useState<SquareValue[]>(() => getDefaultSquares());
   const [userNames, setUserNames] = useState<UserNames>({
-    X: 'Player X',
-    O: 'Player O',
+    X: "Player X",
+    O: "Player O",
   });
 
   const nextValue = calculateNextValue(squares);

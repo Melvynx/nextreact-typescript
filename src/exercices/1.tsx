@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import clsx from 'clsx';
+import clsx from "clsx";
 
-// 🦁 Supprime ce commentaire et définit correctement les types pour ce composant
+// 🦁 Supprime ce commentaire et définis correctement les types pour ce composant
 type SquareProps = any;
 
 const Square = (props: SquareProps) => {
-  // 🦁 Remplace ça par les props définit en haut
+  // 🦁 Remplace ça par les props définies en haut
   return (
     <button
-      className={clsx('square', {
-        'winning-square': false, // 🦁 Remplace ça par la prop isWinningSquare
+      className={clsx("square", {
+        "winning-square": false, // 🦁 Remplace ça par la prop isWinningSquare
       })}
     >
       O {/* 🦁 Remplace ça par la prop children */}

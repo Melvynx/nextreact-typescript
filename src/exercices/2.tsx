@@ -1,9 +1,9 @@
-import { Board } from '../lib/tictactoe/Board';
+import { Board } from "../lib/tictactoe/Board";
 import {
   calculateNextValue,
   calculateStatus,
   getDefaultSquares,
-} from '../lib/tictactoe/helpers';
+} from "../lib/tictactoe/helpers";
 
 type GameInfoProps = {
   status: string;
